@@ -1,9 +1,6 @@
-<!doctype html>
-<html>
-	<head>
-		<title>My View in Play!</title>
-	</head>
-	<body>
-		<h1>Hello world</h1>
-	</body>
-</html>
+@(message: String, list: List[String])
+
+@layout {
+	<h1>@Html(message)</h1>
+	@dispList(list)
+}

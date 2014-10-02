@@ -10,6 +10,8 @@ GET    /contact/:id          controllers.Contacts.edit(id: Long)
 POST   /contact/:id          controllers.Contacts.update(id: Long)
 POST   /contact/:id/delete   controllers.Contacts.delete(id: Long)
 
+GET    /another              controllers.Contacts.another
+
 GET    /token/:id            controllers.Application.token(id: Long)
 
 GET    /regex/$id<[0-9]+>    controllers.Application.regex(id: Long)

@@ -1,0 +1,11 @@
+@(list: List[String])
+
+@if(list.isEmpty) {
+	<h2>There are no elements</h2>
+} else {
+	<ul>
+		@list.map { ele =>
+			<li>@ele</li>
+		}
+	</ul>
+}

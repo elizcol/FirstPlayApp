@@ -1,0 +1,5 @@
+@()(implicit session: Session)
+
+@layout {
+	<h1>Counter: @session.get("counter").getOrElse(0)</h1>	
+}
