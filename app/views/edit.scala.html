@@ -1,0 +1,17 @@
+@* edit Template File *@
+@(id: Long, contact: Form[model.Contact])
+
+@layout {
+
+	<h2>Update Contact</h2>
+	
+	@helper.form(action = routes.Contacts.update(id)) {
+		
+		@helper.inputText(contact("name"), '_label -> "Name")
+		@helper.inputText(contact("email"), '_label -> "Email")
+		
+		<input type="submit" value="Update Contact" />
+		
+	}
+	
+}
