@@ -1,6 +1,6 @@
-@(message: String, list: List[String])
+@(list: List[model.Contact], contact: Form[model.Contact])
 
 @layout {
-	<h1>@Html(message)</h1>
-	@dispList(list)
+	<h1>My Contacts</h1>
+	@dispList(list, contact)
 }
