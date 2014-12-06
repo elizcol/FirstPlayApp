@@ -1,0 +1,18 @@
+@(features: Set[model.Feature])
+
+@main("Features") {
+
+	<h2>Features</h2>
+    <ul> 
+
+    @features.map { feature => 
+    
+	<li>@feature.name <br>
+	-- @feature.description <br>
+	-- @feature.issue_tag
+	</li>   
+    
+    }
+    </ul>
+
+}

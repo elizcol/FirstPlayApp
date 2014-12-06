@@ -5,6 +5,10 @@
 # Home page
 #GET   /                    controllers.Application.index
 GET    /                     controllers.Contacts.index
+
+GET    /coll                 controllers.Application.coll
+GET    /coll/:name                 controllers.Application.getColl(name: String)
+
 POST   /contact              controllers.Contacts.create
 GET    /contact/:id          controllers.Contacts.edit(id: Long)
 POST   /contact/:id          controllers.Contacts.update(id: Long)

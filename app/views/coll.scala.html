@@ -1,0 +1,15 @@
+@(set: Set[String])
+
+@main("Collections") {
+
+	<h2>Collections</h2>
+    <ul> 
+
+    @set.map { s => 
+    
+	<li>@s</li>   
+    
+    }
+    </ul>
+
+}
