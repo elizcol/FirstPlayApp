@@ -7,9 +7,11 @@
 
     @features.map { feature => 
     
-	<li>@feature.name <br>
+	<li><a href='@routes.Application.getFeature(feature.name)'>@feature.name</a> <br>
 	-- @feature.description <br>
-	-- @feature.issue_tag
+	@if(!feature.issue_tag.isEmpty) {
+		-- @feature.issue_tag
+	}
 	</li>   
     
     }

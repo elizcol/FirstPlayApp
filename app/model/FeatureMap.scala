@@ -80,9 +80,9 @@ object ElementMap {
 			"_type" -> element._type,
 			"keyword" -> element.keyword,
 			"name" -> element.name,
-			"tags" -> element.tags,//.map(TagMap.toBson),
-			"steps" -> element.steps,//.map(StepMap.toBson),
-			"examples" -> element.examples//.map(ExampleMap.toBson) //Option
+			"tags" -> element.tags.get.map(TagMap.toBson),
+			"steps" -> element.steps.get.map(StepMap.toBson),
+			"examples" -> element.examples.get.map(ExampleMap.toBson)
 			)
 	}
 }
@@ -104,8 +104,7 @@ object StepMap {
 		MongoDBList(
 			"keyword" -> step.keyword,
 			"name" -> step.name,
-			"rows" -> step.rows//.map(RowMap.toBson)
-			)
+			"rows" -> step.rows.get.map(RowMap.toBson))
 	}
 }
 

@@ -24,6 +24,11 @@ object Application extends Controller {
 		//Ok(views.html.view(contacts, Contact.form))
 		Ok(views.html.features(names))
 	}
+	
+	def getFeature(name: String) = Action {
+		val feature = featureDal.getFeature(name)
+		Ok(views.html.feature(feature))
+	}
 
 	def token(id: Long) = Action {
 		Ok(s"This is a token based route: $id")

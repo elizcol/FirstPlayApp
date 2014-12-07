@@ -1,0 +1,85 @@
+@(feature: model.Feature)
+
+@main("Feature") {
+
+	<h2>Feature</h2>
+	<h3>@feature.name</h3>
+    
+	-- @feature.description <br>
+	-- @feature.issue_tag <br>
+	@if(!feature.tags.isEmpty) {
+		---- <table><tbody><tr>
+		@feature.tags.map { tag =>
+	    	<td>
+	    	@tag.name
+	    	</td>
+    	}
+    	</tr></tbody></table>
+    }
+    @if(!feature.elements.isEmpty) {
+		---- <table><tbody>
+		@feature.elements.map { element =>
+	    	<tr><td>
+	    	@if(!element.tags.isEmpty) {
+				------ <table><tbody><tr>
+				@element.tags.get.map { tag =>
+			    	<td>
+			    	@tag.name
+			    	</td>
+		    	}
+    			</tr></tbody></table>
+   			}
+   			<b>@element.name - @element.description</b>
+		    @if(!element.steps.isEmpty) {
+				------ <table><tbody>
+				@element.steps.get.map { step =>
+			     	<tr>
+			    	<td>@step.keyword</td>
+			    	<td>@step.name</td>
+			    	<td>
+			    	@if(!step.rows.isEmpty) {
+						------ <table><tbody>
+						@step.rows.get.map { row =>
+							<tr>
+							@row.cells.map { cell =>
+						    	<td>
+						    	@cell
+						    	</td>
+						    }
+				    		</tr>
+				    	}
+		    			</tbody></table>
+		   			}
+			    	</td>
+			    	</tr>
+			    } <!-- end of element steps -->
+			    </tbody></table>
+			} <!-- end of element steps not empty -->
+			@if(!element.examples.isEmpty) {
+				------ <table><tbody><tr>
+				@element.examples.get.map { example =>
+			    	<td>
+			    	<b>@example.keyword</b>
+			    	@if(!example.rows.isEmpty) {
+						------ <table><tbody>
+						@example.rows.map { row =>
+							<tr>
+							@row.cells.map { cell =>
+						    	<td>
+						    	@cell
+						    	</td>
+						    }
+				    		</tr>
+				    	}
+		    			</tbody></table>
+		   			}
+			    	</td>
+		    	} <!-- end of examples -->
+    			</tr></tbody></table>
+   			} <!-- end of examples not empty -->
+	    	</td></tr>
+	    } <!-- end of feature elements -->
+    	</tbody></table>
+    } <!-- end of feature elements not empty -->
+
+} <!-- end of main -->

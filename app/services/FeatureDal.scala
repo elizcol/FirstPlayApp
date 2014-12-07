@@ -18,6 +18,6 @@ class FeatureDal {
 		
 		val feature = result.get
 		
-		feature
+		FeatureMap.fromBson(feature)
 	}
 }
