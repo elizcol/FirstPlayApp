@@ -3,7 +3,10 @@ package controllers
 import play.api._
 import play.api.mvc._
 import services.{MongoFactory,FeatureDal}
+import com.wordnik.swagger.annotations._
+import javax.ws.rs.PathParam
 
+@Api(value = "/coll", description = "Operations about mongo")
 object Application extends Controller {
 
 	val conn = MongoFactory.getConnection
@@ -13,19 +16,39 @@ object Application extends Controller {
 		Ok("Cheers")
 	}
 	
+	@ApiOperation(
+		nickname = "getCollections",
+		value = "Get the list of Collections from MongoDB",
+		notes = "Returns the collections",
+		response = classOf[model.Feature],
+		responseContainer = "List",
+		httpMethod = "GET")
 	def coll = Action {
 		val collections = MongoFactory.getAllCollections(conn)
 		//Ok(views.html.view(contacts, Contact.form))
 		Ok(views.html.coll(collections))
 	}
 	
-	def getColl(name: String) = Action {
+	@ApiOperation(
+		nickname = "getFeatures",
+		value = "Find all features",
+		notes = "Returns features in collection 'Features' from db",
+		response = classOf[model.Feature],
+		responseContainer = "List",
+		httpMethod = "GET")
+	def getFeatures = Action {
 		val names = featureDal.getFeatures
 		//Ok(views.html.view(contacts, Contact.form))
 		Ok(views.html.features(names))
 	}
 	
-	def getFeature(name: String) = Action {
+	@ApiOperation(
+		nickname = "getFeatureByName",
+		value = "Get all feature by name",
+		notes = "Return feature in the collection by name",
+		response = classOf[model.Feature],
+		httpMethod = "GET")
+	def getFeature(@ApiParam(value = "Name of the feature to fetch")@PathParam("name") name: String) = Action {
 		val feature = featureDal.getFeature(name)
 		Ok(views.html.feature(feature))
 	}

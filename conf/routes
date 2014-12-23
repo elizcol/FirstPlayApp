@@ -6,10 +6,16 @@
 #GET   /                    controllers.Application.index
 GET    /                      controllers.Contacts.index
 
-GET    /coll                  controllers.Application.coll
-GET    /coll/:name            controllers.Application.getColl(name: String)
-GET    /coll/Features/:name   controllers.Application.getFeature(name: String)
+GET    /swagger-ui/*file      controllers.Assets.at(path = "/public/swagger-ui", file)
+GET    /api-docs              controllers.ApiHelpController.getResources
 
+
+GET    /api-docs/coll         controllers.ApiHelpController.getResource(path="/coll")
+GET    /coll                  controllers.Application.coll
+GET    /coll/features         controllers.Application.getFeatures
+GET    /coll/features/:name   controllers.Application.getFeature(name: String)
+
+GET    /api-docs/contact      controllers.ApiHelpController.getResource(path="/contact")
 POST   /contact               controllers.Contacts.create
 GET    /contact/:id           controllers.Contacts.edit(id: Long)
 POST   /contact/:id           controllers.Contacts.update(id: Long)
